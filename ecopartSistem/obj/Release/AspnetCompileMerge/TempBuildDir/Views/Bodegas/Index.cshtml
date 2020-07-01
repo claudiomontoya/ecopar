@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Modelo.bodega>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bodegas</h2>
+
+<p>
+ @Html.ActionLink("Nuevo Registro", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Direccion
+        </th>
+        <th>
+           Comuna
+        </th>
+        <th>
+           Telefono
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientes.rut) | @Html.DisplayFor(modelItem => item.clientes.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion) @Html.DisplayFor(modelItem => item.numero)
+        </td>
+        
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.comunas.comuna)
+        </td>
+           
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Actualizar", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-sm" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

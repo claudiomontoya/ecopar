@@ -1,0 +1,139 @@
+﻿@model Modelo.Solicitud
+
+@{
+    ViewBag.Title = "Details";
+    var emision = ViewBag.emision;
+}
+
+<h2>Detalle de Solicitud N:@Model.id</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Cliente
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.clientes.rut) @Html.DisplayFor(model => model.clientes.nombre)
+        </dd>
+        <dt>
+            Producto Solicitado
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Productos.producto)
+        </dd>
+        <dt>
+            Cantidad
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidad)
+        </dd>
+        <dt>
+            Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarios.nombre)
+        </dd>
+
+        <dt>
+            Fecha Creacion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+           Estado
+                      
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            Descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            Orden de Compra
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archivo)
+        </dd>
+
+        <dt>
+            Tipo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_despacho)
+        </dd>
+        @if (Model.tipo_despacho == "despacho")
+        {
+        <dt>
+            Bodega
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bodega.descripcion)
+        </dd>
+        }
+        else
+        {
+        <dt>
+            Sucursal
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sucursal.nombre)
+        </dd>
+        }
+        <dt>
+            Fecha Requerida
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_requerida)
+        </dd>
+       </dl>
+    <hr>
+    @if (emision != null)
+    {
+    <div>
+        <h4>Emisiones Realizadas</h4>
+        <dl class="dl-horizontal">
+            
+            <dt>
+                Codigo
+            </dt>
+            <dd>
+                @emision.id
+            </dd>
+            <dt>
+                Cantidad
+            </dt>
+            <dd>
+                @emision.cantidad
+            </dd>
+            <dt>
+                Usuario Ecopar
+            </dt>
+            <dd>
+                @emision.usuarioeco
+            </dd>
+        </dl>
+</div>
+    }
+</div>
+<p>
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

@@ -1,0 +1,80 @@
+﻿@model Modelo.bodega
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Realmente desea eliminar el registro?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Encargado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_encargado)
+        </dd>
+
+        <dt>
+            Cliente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clientes.rut)
+        </dd>
+
+        <dt>
+            Comuna
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comunas.comuna)
+        </dd>
+
+        <dt>
+            Descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            Direccion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            Numero
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            Telefono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

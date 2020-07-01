@@ -1,0 +1,128 @@
+﻿@model Modelo.clientes
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+
+
+<h3>Desea eliminar el registro?</h3>
+<div>
+    <h4>clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.comunas.comuna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comunas.comuna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.formapago.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.formapago.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.celular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_encargado_pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_encargado_pago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_encargado_contrato)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_encargado_contrato)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

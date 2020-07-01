@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Modelo.ClienteDestino>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h4>Listado de Destinos cliente </h4>
+<div class="col-md-10">
+    <div class="form-group col-md-2">
+        @Html.ActionLink("Nuevo Registro", "Create", null, new { @class = "btn btn-success" })
+    </div>
+    <div class="form-group col-md-4">
+            <input type="text" class="form-control" id="txt_rut_cliente" placeholder="Buscar por rut cliente" />
+        </div>
+    </div>
+<table class="table">
+    <tr>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Destino
+        </th>
+        <th>
+            Persona Contacto
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientes.rut) | @Html.DisplayFor(modelItem => item.clientes.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.destinos.id) | @Html.DisplayFor(modelItem => item.destinos.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personas.rut) | @Html.DisplayFor(modelItem => item.Personas.nombre) | @Html.DisplayFor(modelItem => item.Personas.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+        @Html.ActionLink("Actualizar", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-sm" }) |
+        @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

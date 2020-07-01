@@ -1,0 +1,83 @@
+﻿@model Modelo.emision
+
+@{
+    ViewBag.Title = "Create";
+    var solicitud = ViewBag.solicitud;
+}
+
+<h2>Creacion de Emision para Solicitud Nº: @solicitud.id</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal col-md-6">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_solicitud, "Solitud", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <input type="text" name="id_solicitud" value="@solicitud.id" id="id_solicitud" class="form-control" readonly>
+                @Html.ValidationMessageFor(model => model.id_solicitud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Cliente</label>
+            <div class="col-md-10">
+                <input type="text" name="cliente" value="@solicitud.clientes.rut" id="cliente" class="form-control" readonly>
+                <input type="text" name="cliente" value="@solicitud.clientes.nombre" id="cliente" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Producto</label>
+            <div class="col-md-10">
+                <input type="text" name="producto" value="@solicitud.Productos.producto" id="producto" class="form-control" readonly>               
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Cantidad Solicitada</label>
+            <div class="col-md-10">
+                <input type="text" name="cantidadsolicitada" value="@solicitud.cantidad" id="cantidadsolicitada" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Fecha Creacion</label>
+            <div class="col-md-10">
+                <input type="text" name="fecha" value="@solicitud.fecha" id="fecha" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Fecha Requerida</label>
+            <div class="col-md-10">
+                <input type="text" name="fechare" value="@solicitud.fecha_requerida" id="fechare" class="form-control" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Tipo envio</label>
+            <div class="col-md-10">
+                <input type="text" name="tipo" value="@solicitud.tipo_despacho" id="tipo" class="form-control" readonly>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear nueva Emision" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-12">
+    @Html.ActionLink("Volver al Listado", "Index")
+</div>

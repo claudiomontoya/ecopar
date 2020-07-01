@@ -1,0 +1,66 @@
+﻿@model Modelo.Solicitud
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Solicitud</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.clientes.rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clientes.rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuarios.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuarios.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archivo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

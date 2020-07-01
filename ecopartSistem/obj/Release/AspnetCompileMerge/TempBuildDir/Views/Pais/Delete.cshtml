@@ -1,0 +1,31 @@
+﻿@model Modelo.paises
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+
+
+<h3>Desea eliminar el registro?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pais)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>

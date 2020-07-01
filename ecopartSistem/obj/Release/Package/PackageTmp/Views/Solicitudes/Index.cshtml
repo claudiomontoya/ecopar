@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Modelo.Solicitud>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Solicitudes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Codigo
+        </th>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Fecha Creacion
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Bodega
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Fecha Requerida
+        </th>
+        <th>
+            Usuario
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientes.nombre) @Html.DisplayFor(modelItem => item.clientes.rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_despacho)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bodega.descripcion)
+        </td>
+        <td>
+            @if (item.estado == "pendiente")
+            {
+                <span class="badge badge-secondary">@Html.DisplayFor(modelItem => item.estado)</span>
+            }
+            @if (item.estado == "emitida")
+            {
+                <span class="badge badge-success" style="background-color:#ff6a00">@Html.DisplayFor(modelItem => item.estado)</span>
+            }
+            @if (item.estado == "recepcionada")
+            {
+                <span class="badge badge-success" style="background-color:#77b99e">@Html.DisplayFor(modelItem => item.estado)</span>
+            }
+
+            @if (item.estado == "transferida")
+            {
+                <span class="badge badge-success" style="background-color:#ffd800">@Html.DisplayFor(modelItem => item.estado)</span>
+            }
+            @if (item.estado == "finalizada")
+            {
+                <span class="badge badge-success" style="background-color:#21aa5b">@Html.DisplayFor(modelItem => item.estado)</span>
+            }
+            @if (item.estado == "cancelada")
+            {
+                <span class="badge badge-success" style="background-color:#ff0000">@Html.DisplayFor(modelItem => item.estado)</span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_requerida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuario)
+        </td>
+        <td>
+            @if (item.estado != "pendiente")
+            {
+                if (item.estado == "emitida")
+                {
+                    @Html.ActionLink("Agregar Emision", "Create", "Emision", new { id = item.id }, new { @class = "btn btn-success btn-sm" }) <text>|</text>
+                    @Html.ActionLink("Recepcionar", "Estado", new { id = item.id, estado="recepcionada" }, new { @class = "btn btn-warning btn-sm" }) <text>|</text>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })<text>|</text>
+                    @Html.ActionLink("Finalizar", "Estado", new { id = item.id, estado = "finalizada" }, new { @class = "btn btn-success btn-sm" })<text>|</text>
+                    @Html.ActionLink("Cancelar", "Estado", new { id = item.id, estado = "cancelada" }, new { @class = "btn btn-danger btn-sm" })
+                }
+                if (item.estado == "recepcionada")
+                {
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })<text>|</text>
+                    @Html.ActionLink("Cancelar", "Estado", new { id = item.id, estado = "cancelada" }, new { @class = "btn btn-danger btn-sm" })
+                }
+                if (item.estado == "transferida")
+                {
+                    @Html.ActionLink("Finalizar", "Estado", new { id = item.id, estado = "finalizada" }, new { @class = "btn btn-success btn-sm" }) <text>|</text>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })<text>|</text>
+                    @Html.ActionLink("Cancelar", "Estado", new { id = item.id, estado = "cancelada" }, new { @class = "btn btn-danger btn-sm" })
+                }
+                if (item.estado == "finalizada")
+                {
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })
+                }
+                if (item.estado == "cancelada")
+                {
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })
+                }
+                }
+                else
+                {
+                @Html.ActionLink("Crear Emision", "Create", "Emision", new { id = item.id }, new { @class = "btn btn-success btn-sm" }) <text>|</text>
+                @Html.ActionLink("Cambiar Estado", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-sm" }) <text>|</text>
+                @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })<text>|</text>
+                @Html.ActionLink("Cancelar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+            }
+
+        </td>
+    </tr>
+}
+
+</table>

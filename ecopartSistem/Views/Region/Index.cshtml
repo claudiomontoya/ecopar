@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Modelo.regiones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+    @Html.ActionLink("Nuevo Registro", "Create",null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Pais
+        </th>
+        <th>
+            Region
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.paises.pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.region)
+        </td>
+        <td>
+            @Html.ActionLink("Actualizar", "Edit", new { id=item.id }, new { @class = "btn btn-warning btn-sm" }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.id }, new { @class = "btn btn-primary btn-sm" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

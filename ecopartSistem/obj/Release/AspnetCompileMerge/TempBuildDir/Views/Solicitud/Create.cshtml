@@ -1,0 +1,110 @@
+﻿@model Modelo.Solicitud
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Creacion de Nueva Solicitud</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+ 
+    <input type="hidden" id="estado" name="estado" value="@ViewBag.estado">
+    <input type="hidden" id="fecha" name="fecha" value="@ViewBag.fecha">
+    <input type="hidden" id="usuario" name="usuario" value="@ViewBag.usuario">
+    <input type="hidden" id="id_cliente" name="id_cliente" value="@ViewBag.cliente">
+    <div class="form-horizontal col-md-6">
+        <h5>Complete el Formulario</h5>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Producto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_producto", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.cantidad, "Cantidad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Tipo envio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="radio">
+                    <label><input type="radio" id="radio1" name="tipo_despacho" value="despacho" checked>Despacho a Bodega</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" id="radio2" name="tipo_despacho" value="retiro">Retiro en Ecopar</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="bodega">
+            @Html.Label("Bodega", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_bodega", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group" style="display:none" id="sucursal">
+            @Html.Label("Sucursal Ecopar", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_sucursal", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Fecha Requerida", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" class="form-control" id="fecha_requerida" name="fecha_requerida">
+            </div>
+        </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.descripcion, "Detalle Solicitud", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.descripcion, 6, 40, new { @class = "form-control", @value = "Tft.WebRole.Properties.Settings.Default.DefaultLanguage" })
+                    @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.archivo, "Orden de Compra", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.archivo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.archivo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Enviar solicitud" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+}
+
+<div class="col-md-12">
+    @Html.ActionLink("Volver al Listado", "Index")
+</div>
+@section scriptsjs
+{
+    <script>
+$(document).ready(function () {
+    $("#radio1, #radio2").change(function () {
+        if ($("#radio1").is(":checked")) {
+            $('#bodega').show();
+            $('#sucursal').hide();
+        }
+        if ($("#radio2").is(":checked")) {
+            $('#bodega').hide();
+            $('#sucursal').show();
+        }
+       
+    });
+});
+
+    </script>
+}

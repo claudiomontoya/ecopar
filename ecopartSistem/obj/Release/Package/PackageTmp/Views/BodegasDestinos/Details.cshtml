@@ -1,0 +1,74 @@
+﻿@model Modelo.bodegasdestinos
+
+@{
+    ViewBag.Title = "Details";
+    var encargado = ViewBag.encargado;
+}
+
+
+<div>
+    <h4>Detalle Bodega Destino</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Comuna
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comunas.comuna)
+        </dd>
+
+        <dt>
+            Destino
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.destinos.nombre)
+        </dd>
+
+        <dt>
+            Descripcion Bodega
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            Encargado
+        </dt>
+
+        <dd>
+            @(encargado.rut + ' ' + encargado.nombre + ' ' + encargado.apellido) <a href="/Personas/Details/@encargado.id"> Ver Detalles</a>
+        </dd>
+
+        <dt>
+            Direccion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            Numero
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            Telefono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Actualizar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Volver al Listado", "Index", new { id = Model.id_destino })
+</p>

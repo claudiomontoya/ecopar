@@ -1,0 +1,48 @@
+﻿@model Modelo.ClienteDestino
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>ClienteDestino</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.clientes.rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clientes.rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.destinos.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.destinos.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Personas.rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.rut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,9 @@
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\Modelo.dll.config
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\Modelo.dll
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\Modelo.pdb
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\EntityFramework.dll
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\EntityFramework.xml
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\obj\Debug\Modelo.dll
+C:\Users\Claudio\Documents\Visual Studio 2015\Projects\ecopartSistem\Modelo\obj\Debug\Modelo.pdb

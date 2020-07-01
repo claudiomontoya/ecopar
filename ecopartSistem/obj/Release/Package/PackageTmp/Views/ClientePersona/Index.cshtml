@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Modelo.Cliente_Persona>
+
+@{
+    ViewBag.Title = "Index";
+    var cliente = ViewBag.cliente;
+}
+
+<h3>Contactos de : @cliente.nombre</h3>
+
+<p>
+    @Html.ActionLink("Agregar Contacto", "Create", new { id = cliente.id }, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Cliente
+        </th>
+        <th>
+            Encargado
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientes.rut) | @Html.DisplayFor(modelItem => item.clientes.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personas.rut) | @Html.DisplayFor(modelItem => item.Personas.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_persona.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Actualizar", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-sm" }) |          
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,58 @@
+﻿@model Modelo.destinos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>destinos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Comuna
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comunas.comuna)
+        </dd>
+
+        <dt>
+            Nombre Destino
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            Dirreccion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+           Telefono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono)
+        </dd>
+
+        <dt>
+            Mail
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Actualizar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Volver al Listado", "Index")
+</p>

@@ -1,0 +1,155 @@
+﻿@model Modelo.destino_persona
+
+@{
+    ViewBag.Title = "Create";
+    var destino = ViewBag.destino;
+}
+<div class="modal fade" id="ModalPersona" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelG">Buscar Personas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group col-md-6">
+                    <label for="txt_nombre_persona" class="col-form-label">Nombre Persona</label>
+                    <input type="text" class="form-control" id="txt_nombre_persona" />
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Rut</th>
+                            <th>Nombre</th>
+                            <th>Celular</th>
+                            <th>Mail</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabla-persona"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2>Nuevo Contacto de :@destino.nombre</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal col-md-8">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_destino, "Destino", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2" style="padding:0">
+                    <input type="text" class="form-control" id="id_destino" name="id_destino" value="@destino.id" readonly>
+                </div>
+                <div class="col-md-10" style="padding:0">
+                    <input type="text" class="form-control" id="txt_destino" name="txt_destino" value="@(destino.nombre)" readonly>
+                    @Html.ValidationMessageFor(model => model.id_destino, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_persona, "Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-1" style="padding:0">
+                    <input type="text" class="form-control" id="id_persona" name="id_persona" readonly>
+                </div>
+                <div class="col-md-7" style="padding:0">
+                    <input type="text" class="form-control" id="txt_persona" name="txt_persona" placeholder="Busque una persona" readonly>
+                    @Html.ValidationMessageFor(model => model.id_persona, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-success btn-sm" onclick="nuevoPersona()">Agregar</button>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="buscarPersona()">Buscar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_tipo, "Tipo Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("id_tipo", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_tipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Agregar Contacto" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-md-12">
+    @Html.ActionLink("Volver al Listado", "Index", new { id = destino.id })
+</div>
+
+@section scriptsjs
+{
+    <script>
+
+    $(document).ready(function () {
+
+
+
+        $("#txt_nombre_persona").keyup(function () {
+            $.get("/Personas/GetPersonas", { nombre: $('#txt_nombre_persona').val() }, function (data) {
+                $("#tabla-persona").html('');
+                var html = '';
+                $.each(data, function (index, row) {
+                    html += "<tr><td>" + row.rut + "</td><td>" + row.nombre + " " + row.apellido + "</td><td>" + row.celular + "</td><td>" + row.mail + "</td><td><button type='button' class='btn btn-success btn-sm' dataid='" + row.id + "' datanombre='" + row.nombre + " " + row.apellido + "' onclick='seleccionaPersona(this)'>Seleccionar</button></td></tr>";
+                });
+
+                $("#tabla-persona").html(html);
+            })
+        });
+
+
+    });
+
+    function buscarPersona() {
+
+    $("#ModalPersona").modal('show');
+    $.get("/Personas/GetPersonas", { nombre: $('#txt_nombre_persona').val() }, function (data) {
+        $("#tabla-persona").html('');
+        var html = '';
+        $.each(data, function (index, row) {
+            html += "<tr><td>" + row.rut + "</td><td>" + row.nombre + " " + row.apellido + "</td><td>" + row.celular + "</td><td>" + row.mail + "</td><td><button type='button' class='btn btn-success btn-sm' dataid='" + row.id + "' datanombre='" + row.nombre + " " + row.apellido + "' onclick='seleccionaPersona(this)'>Seleccionar</button></td></tr>";
+        });
+
+        $("#tabla-persona").html(html);
+    })
+}
+
+
+function seleccionaPersona(paso) {
+    var id = $(paso).attr('dataid');
+    var nombre = $(paso).attr('datanombre');
+
+    $("#id_persona").val(id);
+    $("#txt_persona").val(nombre);
+    $("#ModalPersona").modal('toggle');
+
+}
+
+function nuevoPersona() {
+   window.location.href = '@Url.Action("Create", "Personas")';
+}
+
+    </script>
+}

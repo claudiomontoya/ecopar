@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Modelo.destino_persona>
+
+@{
+    ViewBag.Title = "Index";
+    var destino = ViewBag.destino;
+}
+
+<h3>Contactos de : @destino.nombre</h3>
+
+<p>
+    @Html.ActionLink("Agregar Contacto", "Create", new { id = destino.id }, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Destino
+        </th>
+        <th>
+            Contacto
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @destino.nombre
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personas.rut) | @Html.DisplayFor(modelItem => item.Personas.nombre) @Html.DisplayFor(modelItem => item.Personas.apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipo_persona.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

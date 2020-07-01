@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Modelo.Solicitud>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mis Solicitudes</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva solicitud", "Create", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Codigo
+        </th>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Fecha Creacion
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Fecha Requerida
+        </th>
+        <th>
+            Producto Solicitado
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usuarios.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_requerida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Productos.producto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>@if (item.estado == "pendiente")
+        {
+            @Html.ActionLink("Actualizar", "Edit", new { id = item.id }, new { @class = "btn btn-warning btn-sm" }) <text>|</text>
+            @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })<text>|</text>
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.id }, new { @class = "btn btn-danger btn-sm" })
+        }
+        else
+        {
+            @Html.ActionLink("Detalles", "Details", new { id = item.id }, new { @class = "btn btn-primary btn-sm" })
+        }
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,65 @@
+﻿@model Modelo.tranferencia_bodega
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Transferir Pallet a Ecopar</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Se realizara transferencia de Emision N°:@ViewBag.id_emision</h4>
+        <hr />
+        @Html.Hidden("id_emision", (object)ViewBag.id_emision)   
+        <div class="form-group">
+            <label class="control-label col-md-2">Sucursal Ecopar</label>
+            <div class="col-md-10">
+                @Html.DropDownList("id_sucursal", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_sucursal, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Adjuntar Documento</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.archivo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.archivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Fecha Retiro o Envio</label>
+            <div class="col-md-10">
+                <input type="date" name="fecha_retiro" value="" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Cantidad a transferir</label>
+            <div class="col-md-10">
+                <input type="text" name="cantidad" value="@ViewBag.cantidad" id="cantidad" class="form-control" readonly>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tipo</label>
+            <div class="col-md-10">
+                <select name="tipo" class="form-control">
+                    <option value="ENVIO A ECOPAR">ENVIO A ECOPAR</option>
+                    <option value="RETIRO ECOPAR">RETIRO ECOPAR</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear Transferencia" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("volver al listado", "Index")
+</div>

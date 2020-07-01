@@ -1,0 +1,56 @@
+﻿@model Modelo.ClienteDestino
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Realmente desea eliminar el Registro?</h3>
+<div>
+    <h4>Destinos de Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Cliente
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.clientes.rut) @Html.DisplayFor(model => model.clientes.nombre) 
+        </dd>
+
+        <dt>
+            Destino
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.destinos.nombre)
+        </dd>
+
+        <dt>
+            Persona Contacto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Personas.rut)  @Html.DisplayFor(model => model.Personas.nombre) @Html.DisplayFor(model => model.Personas.apellido)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver al Listado", "Index")
+        </div>
+    }
+</div>
